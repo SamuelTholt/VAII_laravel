@@ -31,7 +31,7 @@
                         <i class="fa-solid fa-right-to-bracket"></i> Login/Register
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Prihlásiť sa</a></li>
+                        <li><a class="dropdown-item" href="{{url('login')}}">Prihlásiť sa</a></li>
                         <li><a class="dropdown-item" href="{{url('register')}}">Zaregistrovať sa</a></li>
                     </ul>
                 </div>
