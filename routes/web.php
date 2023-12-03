@@ -45,4 +45,11 @@ Route::get('/recenzie', [ReviewsController::class, 'index'])->name('reviews.inde
 Route::get('/recenzie/create', [ReviewsController::class, 'create'])->name('reviews.create')->middleware(['auth', 'verified'])->name('dashboard');
 Route::post('/recenzie', [ReviewsController::class, 'store'])->name('reviews.store');
 
+Route::get('/recenzie/{id}/edit', [ReviewsController::class, 'edit'])->name('reviews.edit');
+
+// Trasa pre aktualizáciu recenzie
+Route::put('/recenzie/{id}', [ReviewsController::class, 'update'])->name('reviews.update');
+
+// Trasa pre odstránenie recenzie
+Route::delete('/recenzie/{id}', [ReviewsController::class, 'destroy'])->name('reviews.destroy');
 require __DIR__.'/auth.php';

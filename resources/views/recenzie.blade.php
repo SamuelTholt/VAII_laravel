@@ -92,10 +92,18 @@
                                                 <div class="clearfix"></div>
                                                     <p>{{$review->comments}}</p>
                                                     <p>{{ $review->created_at->toFormattedDateString() }}</p>
-                                                <p>
-                                                    <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
-                                                    <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                                                </p>
+                                                @can('update', $review)
+                                                    <a class="float-right btn btn-outline-primary ml-2" href="{{ route('reviews.edit', ['id' => $review->id]) }}"> <i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                                @endcan
+                                                <div>
+                                                    @can('delete', $review)
+                                                        <form action="{{ route('reviews.destroy', $review->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Odstrániť</button>
+                                                        </form>
+                                                    @endcan
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
