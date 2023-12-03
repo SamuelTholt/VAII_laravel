@@ -32,7 +32,13 @@
                             <i class="fa-solid fa-right-to-bracket"></i> {{ Auth::user()->name }}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="{{url('profile')}}">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">
+                                    {{ __('Dashboard') }}
+                                </a></li>
+                            <li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    {{ __('Profil') }}
+                                </a></li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
