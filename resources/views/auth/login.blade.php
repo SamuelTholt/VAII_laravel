@@ -29,7 +29,7 @@
 
         <div class="flex items-center justify-end mt-4">
                 <div class="d-grid mb-2">
-                    <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase text-white bg-blue-950" type="submit">Log in</button>
+                    <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase text-black bg-blue-400" type="submit">Log in</button>
                 </div>
         </div>
     </form>

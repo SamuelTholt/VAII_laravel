@@ -33,7 +33,7 @@
         </div>
 
         <div class="d-grid mb-2">
-            <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase text-white bg-blue-950" type="submit">Register</button>
+            <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase text-black bg-blue-400" type="submit">Register</button>
         </div>
 
         <div class="flex items-center justify-end mt-4">
