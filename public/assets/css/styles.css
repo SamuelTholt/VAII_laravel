@@ -115,6 +115,9 @@
     color: #F4FEFD;
 }
 
+.review-container {
+    margin-bottom: 20px; /* Pridá medzeru 20px na spodok každého kontajnera */
+}
 
 /*
 ikonky tímu kuchárov

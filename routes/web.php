@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/recenzie', [ReviewsController::class, 'index'])->name('reviews.index');
-Route::get('/recenzie/create', [ReviewsController::class, 'create'])->name('reviews.create');
+Route::get('/recenzie/create', [ReviewsController::class, 'create'])->name('reviews.create')->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/recenzie', [ReviewsController::class, 'store'])->name('reviews.store');
 
 require __DIR__.'/auth.php';
