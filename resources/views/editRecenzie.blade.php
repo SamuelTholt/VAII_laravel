@@ -40,8 +40,8 @@
         </form>
     @endcan
         @cannot('update', $review)
-        <h1>Editovanie recenzie recenzie</h1>
-        <p>Nemôžeš editovať recenziu iného usera</p>
+        <h1>Editovanie recenzie</h1>
+        <p>Nemôžeš editovať recenziu iného usera alebo nie si prihlásený</p>
         @endcannot
 
 </div>

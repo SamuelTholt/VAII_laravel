@@ -12,7 +12,7 @@
 <div class="container">
     <h1>Vytvorenie recenzie</h1>
     <form action="{{ route('reviews.store') }}" method="POST">
-        @csrf <!-- Laravel CSRF token pre ochranu pred CSRF útokmi -->
+        @csrf
         <div class="form-group">
             <p>ID používateľa: {{ Auth::user()->id }}</p>
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
