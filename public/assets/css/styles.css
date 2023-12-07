@@ -85,6 +85,9 @@
 
 }
 
+.center {
+    text-align: center;
+}
 /*druha stranka o nas*/
 
 .oNas, .kontakt, .fotogaleria, .registracia {

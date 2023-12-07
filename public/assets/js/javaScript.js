@@ -23,15 +23,24 @@ function vypocitajPocetHviezd() {
     fetch(url2)
         .then(response => response.json())
         .then(data => {
-            var counts = [0, 0, 0, 0, 0]; // Initialize counts for each star rating
+            var pocty = [0, 0, 0, 0, 0];
 
-            for (var i = 0; i < data.length; i++) {
-                counts[data[i] - 1]++; // Increment the count for the current star rating
+            for (var k = 0; k < data.length; k++)
+            {
+                pocty[data[k] - 1]++;
             }
 
-            for (var j = 0; j < counts.length; j++) {
-                console.log((j + 1) + ' star(s): ' + counts[i]);
-            }
+            var pocet1 = pocty[0];
+            var pocet2 = pocty[1];
+            var pocet3 = pocty[2];
+            var pocet4 = pocty[3];
+            var pocet5 = pocty[4];
+
+            document.getElementById('pocet1').textContent = '⭐ ☆ ☆ ☆ ☆: ' + pocet1 + " / " + data.length;
+            document.getElementById('pocet2').textContent = '⭐⭐ ☆ ☆ ☆: ' + pocet2 + " / " + data.length;
+            document.getElementById('pocet3').textContent = '⭐⭐⭐ ☆ ☆: ' + pocet3 + " / " + data.length;
+            document.getElementById('pocet4').textContent = '⭐⭐⭐⭐ ☆: ' + pocet4 + " / " + data.length;
+            document.getElementById('pocet5').textContent = '⭐⭐⭐⭐⭐: ' + pocet5 + " / " + data.length;
         })
         .catch(error => console.error('Error:', error));
 

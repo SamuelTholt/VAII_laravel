@@ -72,11 +72,16 @@
         </div>
     </header>
 
-    <section class="py-5">
+    <section class="py-5 text-center">
         <div class="container my-5 whiteColor">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <h2 id="average"></h2>
+                    <p class ="lead" id="pocet5"></p>
+                    <p class ="lead" id="pocet4"></p>
+                    <p class ="lead" id="pocet3"></p>
+                    <p class ="lead" id="pocet2"></p>
+                    <p class ="lead" id="pocet1"></p>
                 </div>
             </div>
         </div>
@@ -141,6 +146,7 @@
             </div>
         </section>
     @endif
+
 </div>
 </body>
 </html>
