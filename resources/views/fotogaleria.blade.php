@@ -25,6 +25,47 @@
                 <li><a href="{{url('recenzie')}}"><i class="fas fa-star"></i> Recenzie</a></li>
                 <li><a href="{{url('kontakt')}}"><i class="fas fa-envelope"></i> Kontakt</a></li>
                 <li><a href="{{url('oNas')}}"><i class="fas fa-info-circle"></i> O nás</a></li>
+                @if(Auth::user())
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="text" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-right-to-bracket"></i> {{ Auth::user()->name }}
+                            <span class="text-sm text-gray-500">
+                            @foreach(Auth::user()->role as $role)
+                                    [{{ $role->name_of_role }}]
+                                @endforeach
+                        </span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">
+                                    {{ __('Dashboard') }}
+                                </a></li>
+                            <li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    {{ __('Profil') }}
+                                </a></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Odhlásiť sa
+                                </a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </ul>
+                    </div>
+                @else
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="text" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-right-to-bracket"></i> Login/Register
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{url('login')}}">Prihlásiť sa</a></li>
+                            <li><a class="dropdown-item" href="{{url('register')}}">Zaregistrovať sa</a></li>
+                        </ul>
+                    </div>
+                @endif
             </ul>
         </div>
     </nav>
