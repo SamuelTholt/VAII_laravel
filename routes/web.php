@@ -53,3 +53,4 @@ Route::put('/recenzie/{id}', [ReviewsController::class, 'update'])->name('review
 // Trasa pre odstránenie recenzie
 Route::delete('/recenzie/{id}', [ReviewsController::class, 'destroy'])->name('reviews.destroy');
 require __DIR__.'/auth.php';
+

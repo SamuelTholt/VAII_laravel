@@ -31,6 +31,11 @@
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="text" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-right-to-bracket"></i> {{ Auth::user()->name }}
+                            <span class="text-sm text-gray-500">
+                            @foreach(Auth::user()->role as $role)
+                                    [{{ $role->name_of_role }}]
+                                @endforeach
+                        </span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">
