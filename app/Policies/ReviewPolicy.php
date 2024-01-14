@@ -13,11 +13,11 @@ class ReviewPolicy
      */
     public function update(User $user, Reviews $review)
     {
-        return $user->id === $review->user_id;
+        return $user->id === $review->user_id || $user->hasRole('admin');
     }
 
     public function delete(User $user, Reviews $review)
     {
-        return $user->id === $review->user_id;
+        return $user->id === $review->user_id || $user->hasRole('admin');
     }
 }
