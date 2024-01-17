@@ -122,6 +122,11 @@
     margin-bottom: 20px;
 }
 
+.reviews-container {
+    max-height: 500px; /* Set the maximum height you desire for the scrollable area */
+    overflow-y: auto;
+}
+
 /*
 ikonky tímu kuchárov - https://bootsnipp.com/snippets/nNoMz
  */

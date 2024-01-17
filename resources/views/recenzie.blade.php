@@ -92,12 +92,30 @@
         </div>
     </section>
 
+
+    @if(Auth::user())
+        <section class="py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="d-grid mb-2">
+                        <a href="{{ url('/recenzie/create') }}" class="text-black">
+                            <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase bg-blue-400" type="button">
+                                Napísať recenziu
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     <section class="py-5">
         <div class="container my-5 whiteColor">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <h2>Napísali o nás</h2><br>
-                        @foreach($reviews as $review)
+                    <div class="reviews-container">
+                        @foreach($reviews as $index => $review)
                             <div class="container review-container">
                                 <div class="card">
                                     <div class="card-body">
@@ -108,11 +126,10 @@
                                                     @for($i = 0; $i < $review->star_rating; $i++)
                                                         <span class="float-right"><i class="text-warning fa fa-star"></i></span>
                                                     @endfor
-
                                                 </p>
                                                 <div class="clearfix"></div>
-                                                    <p>{{$review->comments}}</p>
-                                                    <p>{{ $review->created_at->toFormattedDateString() }}</p>
+                                                <p>{{$review->comments}}</p>
+                                                <p>{{ $review->created_at->toFormattedDateString() }}</p>
                                                 @can('update', $review)
                                                     <a class="float-right btn btn-outline-primary ml-2" href="{{ route('reviews.edit', ['id' => $review->id]) }}"> <i class="fa-solid fa-pen-to-square"></i> Edit</a>
                                                 @endcan
@@ -129,28 +146,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Add a clearfix after every 3 reviews -->
+                                @if(($index + 1) % 3 === 0)
+                                    <div class="clearfix"></div>
+                                @endif
                             </div>
-                      @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    @if(Auth::user())
-        <section class="py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-            <div class="d-grid mb-2">
-                <a href="{{ url('/recenzie/create') }}" class="text-black">
-                    <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase bg-blue-400" type="button">
-                        Napísať recenziu
-                    </button>
-                </a>
-            </div>
-                </div>
-            </div>
-        </section>
-    @endif
 
 </div>
 </body>

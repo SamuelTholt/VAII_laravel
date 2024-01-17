@@ -54,7 +54,7 @@ class ReviewsController extends Controller
     {
 
         $validatedData = $request->validate([
-            'comments' => 'nullable',
+            'comments' => 'required',
             'star_rating' => 'required|integer|min:1|max:5'
         ]);
 
