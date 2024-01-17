@@ -122,6 +122,7 @@
                     </div>
                 </div>
             </div>
+        </section>
     @endif
 
     <section class="py-5">

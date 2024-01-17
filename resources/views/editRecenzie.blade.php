@@ -11,7 +11,7 @@
 <body>
 <div class="container">
     @can('update', $review)
-        <h1>Editovanie recenzie recenzie</h1>
+        <h1>Editovanie recenzie</h1>
         <form action="{{ route('reviews.update', $review->id) }}" method="POST">
             @csrf <!-- Laravel CSRF token pre ochranu pred CSRF útokmi -->
             @method('PUT') <!-- Metóda PUT pre aktualizáciu údajov -->

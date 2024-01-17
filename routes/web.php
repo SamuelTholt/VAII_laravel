@@ -52,12 +52,17 @@ Route::post('/recenzie', [ReviewsController::class, 'store'])->name('reviews.sto
 
 Route::get('/recenzie/{id}/edit', [ReviewsController::class, 'edit'])->name('reviews.edit');
 
-// Trasa pre aktualizáciu recenzie
 Route::put('/recenzie/{id}', [ReviewsController::class, 'update'])->name('reviews.update');
 
-// Trasa pre odstránenie recenzie
 Route::delete('/recenzie/{id}', [ReviewsController::class, 'destroy'])->name('reviews.destroy');
 require __DIR__.'/auth.php';
 
 Route::get('/menu/data', [JedlaController::class, 'getMenu'])->name("menu.index");
 Route::post('/menu/add', [JedlaController::class, 'addItem'])->name("menu.addItem");
+
+Route::get('/menu/{id}/edit', [JedlaController::class, 'edit'])->name('menu.edit');
+Route::put('/menu/{id}', [JedlaController::class, 'update'])->name('menu.update');
+Route::delete('/menu/{id}', [JedlaController::class, 'destroy'])->name('menu.destroy');
+
+
+Route::get('/menu', [JedlaController::class, 'show'])->name('menu');

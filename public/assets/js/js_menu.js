@@ -25,10 +25,8 @@ function addMenuItem() {
         .then(data => {
             if (data.success) {
                 console.log(data.message);
-                alert("Jedlo bolo pridané!");
+                alert(nazov + " - Jedlo bolo pridané!");
 
-                // Po úspešnom pridaní obnovte zoznam jedál
-                refreshMenu();
             } else {
                 console.error(data.message);
                 alert("Jedlo nebolo pridané, pravdepodobne ste zadali zlé parametre!");
@@ -38,6 +36,8 @@ function addMenuItem() {
             console.error('Chyba pri vykonávaní AJAX volania: ', error);
             alert("Jedlo nebolo pridané, pravdepodobne ste zadali zlé parametre!");
         });
+
+    refreshMenu();
 }
 
 function refreshMenu() {
@@ -51,7 +51,7 @@ function refreshMenu() {
                 item += '<small>' + value.popis + '</small><br>';
                 item += '<small> Alergény: ' + value.alergeny + '</small><br>';
                 if (isAdmin) {
-                    item += '<button onclick="editItem(' + value.jedlo_id + ')">Editovať</button><br>';
+                    item += '<button onclick="editItem(\'' + value.jedlo_id + '\')">Editovať</button><br>';
                     item += '<button onclick="deleteItem(' + value.jedlo_id + ')">Odstrániť</button><br>';
                 }
                 if (value.kategoria_id === 1) {
@@ -76,3 +76,42 @@ function toggleForm() {
     var form = document.getElementById('addItemForm');
     form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
 }
+
+function editItem(jedlo_id) {
+    var editUrl = '/menu/' + jedlo_id + '/edit';
+
+    window.location.href = editUrl;
+}
+
+function deleteItem(jedlo_id) {
+    var url = '/menu/' + jedlo_id;
+
+    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': token
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log(data.message);
+                alert("Jedlo bolo úspešne odstránené!");
+                location.reload();
+            } else {
+                console.error(data.message);
+                alert("Jedlo nebolo odstránené, pravdepodobne sa vyskytla chyba!");
+            }
+        })
+        .catch(error => {
+            console.error('Chyba pri vykonávaní AJAX volania: ', error);
+            alert("Jedlo nebolo odstránené, pravdepodobne sa vyskytla chyba!");
+        });
+
+}
+
+
+
