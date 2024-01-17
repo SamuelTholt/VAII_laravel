@@ -127,6 +127,19 @@
     overflow-y: auto;
 }
 
+.big-text {
+    font-size: 2em;
+}
+
+.larger-text {
+    font-size: 1.5em;
+}
+
+.medium-text {
+    font-size: 1.2em;
+}
+
+
 /*
 ikonky tímu kuchárov - https://bootsnipp.com/snippets/nNoMz
  */

@@ -20,7 +20,6 @@ return new class extends Migration
             ['kategoria_id' => 1, 'nazov' => 'polievky'],
             ['kategoria_id' => 2, 'nazov' => 'hlavneJedla'],
             ['kategoria_id' => 3, 'nazov' => 'prilohy'],
-            ['kategoria_id' => 4, 'nazov' => 'omacky'],
         ]);
     }
 

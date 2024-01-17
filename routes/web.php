@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JedlaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewsController;
 use Illuminate\Support\Facades\Route;
@@ -58,3 +59,4 @@ Route::put('/recenzie/{id}', [ReviewsController::class, 'update'])->name('review
 Route::delete('/recenzie/{id}', [ReviewsController::class, 'destroy'])->name('reviews.destroy');
 require __DIR__.'/auth.php';
 
+Route::get('/menu/data', [JedlaController::class, 'getMenu'])->name("menu.index");
