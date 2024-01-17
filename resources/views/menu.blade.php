@@ -87,9 +87,11 @@
             <div class="container my-5 whiteColor">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <h2 class="big-text">Pridať Jedlo</h2><br>
 
-                        <form id="addItemForm">
+                        <button type="button" onclick="toggleForm()">Pridaj jedlo</button>
+
+                        <form id="addItemForm" style="display: none;">
+                            <h2 class="big-text">Pridanie jedla</h2><br>
                             <div>
                                 <label for="nazov">Názov:</label>
                                 <input type="text" id="nazov" name="nazov" required>
@@ -120,7 +122,6 @@
                     </div>
                 </div>
             </div>
-        </section>
     @endif
 
     <section class="py-5">

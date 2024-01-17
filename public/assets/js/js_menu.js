@@ -40,7 +40,6 @@ function addMenuItem() {
         });
 }
 
-// Funkcia na aktualizáciu zoznamu jedál
 function refreshMenu() {
     fetch('/menu/data')
         .then(response => response.json())
@@ -69,7 +68,11 @@ function refreshMenu() {
         });
 }
 
-// Volanie funkcie refreshMenu pri načítaní stránky
 document.addEventListener('DOMContentLoaded', function () {
     refreshMenu();
 });
+
+function toggleForm() {
+    var form = document.getElementById('addItemForm');
+    form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+}
