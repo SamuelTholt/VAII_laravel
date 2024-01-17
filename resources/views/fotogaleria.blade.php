@@ -20,7 +20,7 @@
         <div class="menuList">
             <ul class="list">
                 <li><a href="{{url('/')}}"><i class="fas fa-home"></i> Domov</a></li>
-                <li><a href="#"><i class="fas fa-utensils"></i> Menu</a></li>
+                <li><a href="{{url('menu')}}"><i class="fas fa-utensils"></i> Menu</a></li>
                 <li><a href="{{url('fotogaleria')}}"><i class="fas fa-camera"></i> Fotogaléria</a></li>
                 <li><a href="{{url('recenzie')}}"><i class="fas fa-star"></i> Recenzie</a></li>
                 <li><a href="{{url('kontakt')}}"><i class="fas fa-envelope"></i> Kontakt</a></li>

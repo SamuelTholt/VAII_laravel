@@ -23,6 +23,10 @@ Route::get('/fotogaleria', function () {
     return view('fotogaleria');
 });
 
+Route::get('/menu', function () {
+    return view('menu');
+});
+
 Route::get('/oNas', function () {
     return view('oNas');
 });
