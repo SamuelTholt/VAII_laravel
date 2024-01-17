@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="{{asset('assets/images/logoLKRestaurant.png')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Menu - LK Restaurant</title>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/styles.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="{{asset('assets/js/js_menu.js')}}"></script>
+
+    <script type="text/javascript">
+        var isAdmin = @json(Auth::check() && Auth::user()->hasRole('admin'));
+    </script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -76,6 +81,47 @@
             <h1 class="text-white fs-3 fw-bolder">Menu</h1>
         </div>
     </header>
+
+    @if(Auth::user() && Auth::user()->hasRole('admin'))
+        <section class="py-5">
+            <div class="container my-5 whiteColor">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2 class="big-text">Pridať Jedlo</h2><br>
+
+                        <form id="addItemForm">
+                            <div>
+                                <label for="nazov">Názov:</label>
+                                <input type="text" id="nazov" name="nazov" required>
+                            </div>
+
+                            <div>
+                                <label for="cena">Cena (€):</label>
+                                <input type="number" id="cena" name="cena" step="0.01" required>
+                            </div>
+
+                            <div>
+                                <label for="popis">Popis:</label>
+                                <textarea id="popis" name="popis" rows="4" required></textarea>
+                            </div>
+
+                            <div>
+                                <label for="alergeny">Alergeny:</label>
+                                <input type="text" id="alergeny" name="alergeny">
+                            </div>
+
+                            <div>
+                                <label for="kategoria_id">Kategória ID:</label>
+                                <input type="number" id="kategoria_id" name="kategoria_id" required>
+                            </div>
+
+                            <button type="button" onclick="addMenuItem()">Pridaj</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 
     <section class="py-5">
         <div class="container my-5 whiteColor">

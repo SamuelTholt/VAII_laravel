@@ -60,3 +60,4 @@ Route::delete('/recenzie/{id}', [ReviewsController::class, 'destroy'])->name('re
 require __DIR__.'/auth.php';
 
 Route::get('/menu/data', [JedlaController::class, 'getMenu'])->name("menu.index");
+Route::post('/menu/add', [JedlaController::class, 'addItem'])->name("menu.addItem");

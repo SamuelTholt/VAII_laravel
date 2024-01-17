@@ -123,7 +123,7 @@
 }
 
 .reviews-container {
-    max-height: 500px; /* Set the maximum height you desire for the scrollable area */
+    max-height: 500px;
     overflow-y: auto;
 }
 
@@ -138,6 +138,44 @@
 .medium-text {
     font-size: 1.2em;
 }
+
+ #addItemForm {
+     max-width: 400px;
+     margin: auto;
+ }
+
+#addItemForm div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: #ff0000;
+}
+
 
 
 /*
