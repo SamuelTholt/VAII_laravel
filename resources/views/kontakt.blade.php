@@ -7,7 +7,7 @@
     <title>Kontakt - LK Restaurant</title>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/styles.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <script src="{{asset('assets/js/js_kontakt.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
@@ -81,20 +81,13 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <h2>Otváracie Hodiny</h2>
-                    <p class="lead">
-                        <span class="bold">Pon:</span> 12:00 - 22:00<br>
-                        <span class="bold">Ut:</span> 12:00 - 22:00<br>
-                        <span class="bold">Str:</span> 12:00 - 22:00<br>
-                        <span class="bold">Štv:</span> 12:00 - 22:00<br>
-                        <span class="bold">Pia:</span> 10:00 - 0:00<br>
-                        <span class="bold">Sob:</span> 12:00 - 0:00<br>
-                        <span class="bold">Ne:</span> 12:00 - 22:00
+                    <p class="lead" id ="openingHours">
                     </p>
 
                     <h2>Kontaktujte nás:</h2>
                     <p class="lead">
-                        <span class="bold">Email:</span> LKRestaurant@gmail.com<br>
-                        <span class="bold">Telefón:</span> +421 442 069 943, 044/206 99 43
+                        <span class="bold">Email:</span> <span id="email">Zobraziť email</span><br>
+                        <span class="bold">Telefón:</span> <span id="phone">Zobraziť telefónne číslo</span>
                     </p>
                 </div>
             </div>

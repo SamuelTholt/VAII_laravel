@@ -119,11 +119,11 @@
 }
 
 .review-container {
-    margin-bottom: 20px; /* Pridá medzeru 20px na spodok každého kontajnera */
+    margin-bottom: 20px;
 }
 
 /*
-ikonky tímu kuchárov
+ikonky tímu kuchárov - https://bootsnipp.com/snippets/nNoMz
  */
 
 .row.heading h2 {
@@ -236,6 +236,11 @@ ul{
     color:#025a8e;
 }
 
+/*
+koniec ikonky tímu kuchárov
+ */
+
+
 .card-inner{
     margin-left: 4rem;
 }
@@ -246,7 +251,6 @@ ul{
 
 .card-img-left {
     width: 45%;
-    /* Link to your background image using in the property below! */
     background: scroll center url("../images/spaghetti_with_logo.jpg");;
     background-size: cover;
 }

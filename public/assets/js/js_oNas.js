@@ -3,13 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
 
     function showNextParagraph() {
-        // Skrytie aktuálneho odseku
         paragraphs[currentIndex].style.display = 'none';
 
-        // Získanie indexu ďalšieho odseku
         currentIndex = (currentIndex + 1) % paragraphs.length;
 
-        // Zobrazenie ďalšieho odseku
         paragraphs[currentIndex].style.display = 'block';
     }
 
@@ -19,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setInterval(() => {
         showNextParagraph();
-        // V tomto bode môžete pridať ďalšie kroky, ktoré chcete vykonať každých 10 sekúnd
-    }, 10 * 1000);
+    }, 30 * 1000);
 });
 
