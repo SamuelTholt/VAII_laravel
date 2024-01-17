@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="{{asset('assets/images/logoLKRestaurant.png')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recenzie - LK Restaurant</title>
+    <title>Menu - LK Restaurant</title>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/styles.css')}}">
-    <script src="{{asset('assets/js/js_recenzie.js')}}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
