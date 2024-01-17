@@ -146,7 +146,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Add a clearfix after every 3 reviews -->
                                 @if(($index + 1) % 3 === 0)
                                     <div class="clearfix"></div>
                                 @endif
