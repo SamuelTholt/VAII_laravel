@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hostiteľ: 127.0.0.1
--- Čas generovania: St 17.Jan 2024, 21:35
+-- Čas generovania: Št 18.Jan 2024, 21:26
 -- Verzia serveru: 10.4.32-MariaDB
 -- Verzia PHP: 8.2.12
 
@@ -36,6 +36,31 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Štruktúra tabuľky pre tabuľku `fotogaleria`
+--
+
+CREATE TABLE `fotogaleria` (
+  `foto_id` bigint(20) UNSIGNED NOT NULL,
+  `typ_id` int(11) NOT NULL,
+  `nazov` longtext NOT NULL,
+  `obrazok` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Sťahujem dáta pre tabuľku `fotogaleria`
+--
+
+INSERT INTO `fotogaleria` (`foto_id`, `typ_id`, `nazov`, `obrazok`) VALUES
+(1, 1, 'Šalát s marinovaným kuracím mäsom, hruškou a niva syrom + Cesnaková bageta', 0x666f6f64315f313730353630353236382e6a7067),
+(2, 1, 'Grilovaný Atlantický Losos s citrónovou omáčkou', 0x666f6f64325f313730353630363635332e6a7067),
+(3, 1, 'Marinované kuracie soté so zeleninou', 0x666f6f64335f313730353630373237302e6a7067),
+(4, 2, 'Interiér 1', 0x696e746572696572315f313730353630373733332e6a7067),
+(5, 2, 'Interiér 2', 0x696e746572696f72345f313730353630383131312e6a7067),
+(6, 1, 'Grilované mäsové plátky s krémovou omáčkou a čerstvou zeleninou', 0x666f6f64385f313730353630383236362e6a7067);
 
 -- --------------------------------------------------------
 
@@ -121,7 +146,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2024_01_14_122758_create_roles_table', 1),
 (7, '2024_01_14_133223_create_user_roles_table', 1),
 (8, '2024_01_17_131847_create_kategorie_table', 1),
-(9, '2024_01_17_132342_create_jedla_table', 1);
+(9, '2024_01_17_132342_create_jedla_table', 1),
+(10, '2024_01_17_220709_create_typfotky_table', 1),
+(11, '2024_01_17_221813_create_fotogaleria_table', 1);
 
 -- --------------------------------------------------------
 
@@ -174,12 +201,12 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `user_id`, `comments`, `star_rating`, `created_at`, `updated_at`) VALUES
-(1, 2, '\"LK Restaurant je moje obľúbené miesto v Liptovskom Mikuláši. Skvelá atmosféra, útulný interiér a skvelý personál. Jedlo je výborne pripravené, a ich ponuka je pestrá. Odporúčam vyskúšať ich domáce dezerty!\"', 5, '2024-01-17 19:13:40', '2024-01-17 19:13:40'),
-(2, 3, 'Pomalá obsluha a teplé jedlo mi trochu skazili zážitok. Verím, že to bola len nešťastná náhoda.', 3, '2023-01-05 19:15:42', '2023-01-05 19:15:42'),
-(3, 4, '\"LK Restaurant ponúka výborný pohľad na okolitú prírodu. Navštívil som ich na terase a bol som ohromený výhľadom. Jedlo bolo tiež skvelé, a celkovo to bolo príjemné strávenie času.\"', 4, '2022-08-15 18:18:04', '2022-08-15 18:18:05'),
-(4, 5, 'Stredne dobrý zážitok. Služba bola rýchla, jedlo v poriadku, ale nič, čo by ma výrazne zaujalo!', 2, '2023-05-07 18:21:01', '2023-05-07 18:21:01'),
-(5, 5, 'Prišiel som sem po nejakom čase a vidím veľký \"upgrade\". Krása LK Restaurant, len tak ďalej.', 5, '2024-01-17 19:24:02', '2024-01-17 19:24:02'),
-(6, 6, 'Včera som bol prvýkrát v LK Restaurant a musím povedať, že som nadšený. Obsluha bola priateľská a rýchla, jedlo čerstvé a chutné. Určite sa sem ešte vrátim.', 5, '2024-01-17 19:25:32', '2024-01-17 19:25:32');
+(1, 2, '\"LK Restaurant je moje obľúbené miesto v Liptovskom Mikuláši. Skvelá atmosféra, útulný interiér a skvelý personál. Jedlo je výborne pripravené, a ich ponuka je pestrá. Odporúčam vyskúšať ich domáce dezerty!\"', 5, '2024-01-17 18:13:40', '2024-01-17 18:13:40'),
+(2, 3, 'Pomalá obsluha a teplé jedlo mi trochu skazili zážitok. Verím, že to bola len nešťastná náhoda.', 3, '2023-01-05 18:15:42', '2023-01-05 18:15:42'),
+(3, 4, '\"LK Restaurant ponúka výborný pohľad na okolitú prírodu. Navštívil som ich na terase a bol som ohromený výhľadom. Jedlo bolo tiež skvelé, a celkovo to bolo príjemné strávenie času.\"', 4, '2022-08-15 16:18:04', '2022-08-15 16:18:05'),
+(4, 5, 'Stredne dobrý zážitok. Služba bola rýchla, jedlo v poriadku, ale nič, čo by ma výrazne zaujalo!', 2, '2023-05-07 16:21:01', '2023-05-07 16:21:01'),
+(5, 5, 'Prišiel som sem po nejakom čase a vidím veľký \"upgrade\". Krása LK Restaurant, len tak ďalej.', 5, '2024-01-17 18:24:02', '2024-01-17 18:24:02'),
+(6, 6, 'Včera som bol prvýkrát v LK Restaurant a musím povedať, že som nadšený. Obsluha bola priateľská a rýchla, jedlo čerstvé a chutné. Určite sa sem ešte vrátim.', 5, '2024-01-17 18:25:32', '2024-01-17 18:25:32');
 
 -- --------------------------------------------------------
 
@@ -203,6 +230,25 @@ INSERT INTO `roles` (`id`, `name_of_role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Štruktúra tabuľky pre tabuľku `typfotky`
+--
+
+CREATE TABLE `typfotky` (
+  `typ_id` int(11) NOT NULL,
+  `nazov` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Sťahujem dáta pre tabuľku `typfotky`
+--
+
+INSERT INTO `typfotky` (`typ_id`, `nazov`) VALUES
+(1, 'jedla'),
+(2, 'restauracia');
+
+-- --------------------------------------------------------
+
+--
 -- Štruktúra tabuľky pre tabuľku `users`
 --
 
@@ -222,12 +268,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'LKRestaurant@gmail.com', NULL, '$2y$12$EkT0wV5.ucFypXqGbgFhpentHQWKSmxrBhBje8X6.GFv4C1iWrJcS', NULL, '2024-01-17 18:48:12', '2024-01-17 18:48:12'),
-(2, 'Samino', 'spotke8@gmail.com', NULL, '$2y$12$p8WxzVZ0Dgdn6WTSvVPhH.snJ5zN/JSBeIKrsgOg7qfLDo5QZT/8W', NULL, '2024-01-17 19:08:58', '2024-01-17 19:08:58'),
-(3, 'Peter K', 'peter.k@test.com', NULL, '$2y$12$O.Tr8GDJdgjLDYCPIytii.p/CAFNG9C9RkeIeuyLQDUEraC8awrP6', NULL, '2024-01-17 19:15:14', '2024-01-17 19:15:14'),
-(4, 'Jakub M', 'jakub.m@test.com', NULL, '$2y$12$ZOQ4/2GpJzYMxIWL3/3jMuBQT6gdal3xOcqPl5HwZqGqMyRHRojGe', NULL, '2024-01-17 19:17:53', '2024-01-17 19:17:53'),
-(5, 'Matúš S', 'matus.s@test.com', NULL, '$2y$12$odNpzvtF4FCJDDZTzMaCeuIL8n7pg2U3AEqDzi4rc.Y3CxUZX4Cx.', NULL, '2024-01-17 19:20:38', '2024-01-17 19:20:38'),
-(6, 'Ronaldo', 'ronaldo@test.com', NULL, '$2y$12$wVSKDSAxHvhGs6s9wz0w/O2JX5h8docgjNV8KQOvYa4LhGkM4TXie', NULL, '2024-01-17 19:25:19', '2024-01-17 19:25:19');
+(1, 'admin', 'LKRestaurant@gmail.com', NULL, '$2y$12$Otzrq00yKqvB9snNRp9IMuUcmI5kdgvBjmepnr2CPOR7Ghj1hG3ay', NULL, '2024-01-17 21:25:28', '2024-01-17 21:25:28'),
+(2, 'Samino', 'spotke8@gmail.com', NULL, '$2y$12$p8WxzVZ0Dgdn6WTSvVPhH.snJ5zN/JSBeIKrsgOg7qfLDo5QZT/8W', NULL, '2024-01-17 18:08:58', '2024-01-17 18:08:58'),
+(3, 'Peter K', 'peter.k@test.com', NULL, '$2y$12$O.Tr8GDJdgjLDYCPIytii.p/CAFNG9C9RkeIeuyLQDUEraC8awrP6', NULL, '2024-01-17 18:15:14', '2024-01-17 18:15:14'),
+(4, 'Jakub M', 'jakub.m@test.com', NULL, '$2y$12$ZOQ4/2GpJzYMxIWL3/3jMuBQT6gdal3xOcqPl5HwZqGqMyRHRojGe', NULL, '2024-01-17 18:17:53', '2024-01-17 18:17:53'),
+(5, 'Matúš S', 'matus.s@test.com', NULL, '$2y$12$odNpzvtF4FCJDDZTzMaCeuIL8n7pg2U3AEqDzi4rc.Y3CxUZX4Cx.', NULL, '2024-01-17 18:20:38', '2024-01-17 18:20:38'),
+(6, 'Ronaldo', 'ronaldo@test.com', NULL, '$2y$12$wVSKDSAxHvhGs6s9wz0w/O2JX5h8docgjNV8KQOvYa4LhGkM4TXie', NULL, '2024-01-17 18:25:19', '2024-01-17 18:25:19');
 
 -- --------------------------------------------------------
 
@@ -263,6 +309,13 @@ INSERT INTO `user_roles` (`id`, `user_id`, `role_id`) VALUES
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexy pre tabuľku `fotogaleria`
+--
+ALTER TABLE `fotogaleria`
+  ADD PRIMARY KEY (`foto_id`),
+  ADD KEY `fotogaleria_typ_id_foreign` (`typ_id`);
 
 --
 -- Indexy pre tabuľku `jedla`
@@ -311,6 +364,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexy pre tabuľku `typfotky`
+--
+ALTER TABLE `typfotky`
+  ADD PRIMARY KEY (`typ_id`);
+
+--
 -- Indexy pre tabuľku `users`
 --
 ALTER TABLE `users`
@@ -336,16 +395,22 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pre tabuľku `fotogaleria`
+--
+ALTER TABLE `fotogaleria`
+  MODIFY `foto_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT pre tabuľku `jedla`
 --
 ALTER TABLE `jedla`
-  MODIFY `jedlo_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `jedlo_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pre tabuľku `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pre tabuľku `personal_access_tokens`
@@ -380,6 +445,12 @@ ALTER TABLE `user_roles`
 --
 -- Obmedzenie pre exportované tabuľky
 --
+
+--
+-- Obmedzenie pre tabuľku `fotogaleria`
+--
+ALTER TABLE `fotogaleria`
+  ADD CONSTRAINT `fotogaleria_typ_id_foreign` FOREIGN KEY (`typ_id`) REFERENCES `typfotky` (`typ_id`);
 
 --
 -- Obmedzenie pre tabuľku `jedla`

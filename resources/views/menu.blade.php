@@ -113,7 +113,7 @@
                             </div>
 
                             <div>
-                                <label for="kategoria_id">Kategória ID:</label>
+                                <label for="kategoria_id">Kategória ID (1-polievka, 2-hlavné jedlo, 3-prílohy):</label>
                                 <select id="kategoria_id" name="kategoria_id" required>
                                     <option value="1">1</option>
                                     <option value="2">2</option>

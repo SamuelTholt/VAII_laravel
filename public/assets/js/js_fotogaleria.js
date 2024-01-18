@@ -9,11 +9,10 @@ function refreshPhotos() {
     fetch('/fotogaleria/data')
         .then(response => response.json())
         .then(data => {
-            var galleryContainer = document.getElementById('gallery-container');
-            galleryContainer.innerHTML = '';
+            var foodGalleryContainer = document.getElementById('food-gallery-container');
+            var restaurantGalleryContainer = document.getElementById('restaurant-gallery-container');
 
             data.forEach(function (value) {
-                // Check if the URL ends with a valid image extension
                 if (isValidImageURL(value.obrazok)) {
 
                     var img = document.createElement('img');
@@ -23,7 +22,6 @@ function refreshPhotos() {
 
                     var link = document.createElement('a');
                     link.classList.add('d-block', 'mb-4', 'h-100');
-
                     link.appendChild(img);
 
                     var name = document.createElement('p');
@@ -69,7 +67,12 @@ function refreshPhotos() {
                         link.appendChild(deleteButton);
                     }
 
-                    galleryContainer.appendChild(link);
+                    if (value.typ_id === 1) {
+                        foodGalleryContainer.appendChild(link);
+                    } else if (value.typ_id === 2) {
+                        restaurantGalleryContainer.appendChild(link);
+                    }
+
                 }
             });
         })

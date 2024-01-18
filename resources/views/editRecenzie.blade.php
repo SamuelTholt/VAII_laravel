@@ -38,11 +38,15 @@
             </div>
             <button type="submit">Upraviť</button>
         </form>
+        <span style="margin-right: 10px;"></span>
+        <a href="{{ route('reviews.index') }}"><button type="button">Naspäť</button></a>
     @endcan
         @cannot('update', $review)
         <h1>Editovanie recenzie</h1>
         <p>Nemôžeš editovať recenziu iného usera alebo nie si prihlásený</p>
         @endcannot
+        <span style="margin-right: 10px;"></span>
+        <a href="{{ route('reviews.index') }}"><button type="button">Naspäť</button></a>
 
 </div>
 </body>

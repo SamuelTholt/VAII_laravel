@@ -46,3 +46,10 @@ button {
 button:hover {
     background-color: #4cae4c;
 }
+
+.form-group img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}

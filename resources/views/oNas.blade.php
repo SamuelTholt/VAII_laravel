@@ -102,7 +102,10 @@
                         Tešíme sa na to, že vás privítame v LK Restaurant a umožníme vám objaviť svet vynikajúcich chute a pohostinnosti. Vaša spokojnosť je pre nás prioritou, a sme hrdí, že môžeme byť súčasťou vašich nezabudnuteľných gastronomických zážitkov. Ďakujeme, že nás podporujete a že ste s nami!
                     </p>
 
-                    <p></p>
+                    <p>
+                        [Klikni na odstavec, ak chceš prejsť na ďalší]
+                        [Alebo čakaj 30 sekúnd, kým sa zobrazí ďalší]
+                    </p>
                 </div>
             </div>
 

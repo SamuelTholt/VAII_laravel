@@ -31,7 +31,15 @@
             </div>
             <button type="submit">Pridať fotku</button>
         </form>
+        <span style="margin-right: 10px;"></span>
+        <a href="{{ route('fotogaleria') }}"><button type="button">Naspäť</button></a>
     @endcan
+        @cannot('create', $foto)
+            <h1>Pridávanie fotky</h1>
+            <p>Nemôžeš pridávať fotku, pretože nie si admin</p>
+            <span style="margin-right: 10px;"></span>
+            <a href="{{ route('fotogaleria') }}"><button type="button">Naspäť</button></a>
+        @endcannot
 </div>
 </body>
 </html>

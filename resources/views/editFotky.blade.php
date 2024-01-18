@@ -36,7 +36,15 @@
             </div>
             <button type="submit">Upraviť</button>
         </form>
+        <span style="margin-right: 10px;"></span>
+        <a href="{{ route('fotogaleria') }}"><button type="button">Naspäť</button></a>
     @endcan
+    @cannot('update', $foto)
+            <h1>Editovanie fotky</h1>
+            <p>Nemôžeš editovať fotku, pretože nie si admin</p>
+            <span style="margin-right: 10px;"></span>
+            <a href="{{ route('fotogaleria') }}"><button type="button">Naspäť</button></a>
+        @endcannot
 </div>
 </body>
 </html>

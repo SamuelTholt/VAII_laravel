@@ -41,10 +41,14 @@
             </div>
             <button type="submit">Upraviť</button>
         </form>
+        <span style="margin-right: 10px;"></span>
+        <a href="{{ route('menu') }}"><button type="button">Naspäť</button></a>
     @endcan
     @cannot('update', $jedlo)
         <h1>Editovanie jedla</h1>
         <p>Nemôžeš editovať jedlo, pretože nie si admin</p>
+        <span style="margin-right: 10px;"></span>
+        <a href="{{ route('menu') }}"><button type="button">Naspäť</button></a>
     @endcannot
 </div>
 </body>

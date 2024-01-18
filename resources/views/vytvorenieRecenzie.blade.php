@@ -35,6 +35,9 @@
             </select>
         </div>
         <button type="submit">Odoslať recenziu</button>
+
+        <span style="margin-right: 10px;"></span>
+        <a href="{{ route('reviews.index') }}"><button type="button">Naspäť</button></a>
     </form>
 </div>
 </body>
