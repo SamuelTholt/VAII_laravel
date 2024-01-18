@@ -79,34 +79,14 @@
 
     @if(Auth::user() && Auth::user()->hasRole('admin'))
         <section class="py-5">
-            <div class="container my-5 whiteColor">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-
-                        <button type="button" onclick="toggle()">Pridaj fotku</button>
-
-                        <form id="addItemForm" style="display: none;" enctype="multipart/form-data">>
-                            <h2 class="big-text">Pridanie fotky</h2><br>
-                            <div>
-                                <label for="nazov">Názov:</label>
-                                <input type="text" id="nazov" name="nazov" required>
-                            </div>
-
-                            <div>
-                                <label for="obrazok">Obrázok:</label>
-                                <input type="file" id="obrazok" name="obrazok" accept="image/*" required>
-                            </div>
-
-                            <div>
-                                <label for="typ_id">Typ ID:</label>
-                                <select id="typ_id" name="typ_id" required>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
-                            </div>
-
-                            <button type="button" onclick="addPhoto()">Pridaj</button>
-                        </form>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="d-grid mb-2">
+                        <a href="{{ url('/fotogaleria/create') }}" class="text-black">
+                            <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase bg-blue-400" type="button">
+                                Pridať fotku
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -125,74 +105,7 @@
             <a class="d-block mb-4 h-100" id="gallery-container"></a>
         </div>
 
-            <div class="col-lg-3 col-md-4 col-6">
-                <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" id="gallery" src="{{asset('assets/images/food1.jpg')}}" alt="food1">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="{{asset('assets/images/food2.jpg')}}" alt="food2">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="{{asset('assets/images/food3.jpg')}}" alt="food3">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="{{asset('assets/images/food4.jpg')}}" alt="food4">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="{{asset('assets/images/food5.jpg')}}" alt="food5">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="{{asset('assets/images/food6.jpg')}}" alt="food6">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="{{asset('assets/images/food7.jpg')}}" alt="food7">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="{{asset('assets/images/food8.jpg')}}" alt="food8">
-                </a>
-            </div>
 
-            <h1 class="whiteColor fw-light text-center text-lg-start mt-4 mb-0">Reštaurácia</h1>
-
-            <hr class="mt-2 mb-5">
-
-            <div class="row text-center text-lg-start">
-
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="{{asset('assets/images/interier1.jpg')}}" alt="interior1">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="{{asset('assets/images/interior2.jpg')}}" alt="interior2">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="{{asset('assets/images/interior3.jpg')}}" alt="interior3">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="{{asset('assets/images/interior4.jpg')}}" alt="interior4">
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 </div>

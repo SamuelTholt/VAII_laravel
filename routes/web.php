@@ -70,12 +70,16 @@ Route::get('/menu', [JedlaController::class, 'show'])->name('menu');
 
 
 
-Route::get('/fotogaleria/data', [FotogaleriaController::class, 'getPhoto'])->name("fotgaleria.index");
-Route::post('/fotogaleria/add', [FotogaleriaController::class, 'addItem'])->name("fotogaleria.addItem");
+Route::get('/fotogaleria/data', [FotogaleriaController::class, 'getPhoto'])->name("fotogaleria.index");
+Route::get('/fotogaleria/create', [FotogaleriaController::class, 'create'])->name('fotogaleria.create');
+Route::post('/fotogaleria', [FotogaleriaController::class, 'store'])->name('fotogaleria.store');
+
 
 Route::get('/fotogaleria/{id}/edit', [FotogaleriaController::class, 'edit'])->name('fotogaleria.edit');
 Route::put('/fotogaleria/{id}', [FotogaleriaController::class, 'update'])->name('fotogaleria.update');
+
 Route::delete('/fotogaleria/{id}', [FotogaleriaController::class, 'destroy'])->name('fotogaleria.destroy');
+
 
 
 Route::get('/fotogaleria', [FotogaleriaController::class, 'show'])->name('fotogaleria');

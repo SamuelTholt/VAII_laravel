@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="cena">Cena (€):</label>
-                <input type="number" id="cena" name="cena" value="{{ $jedlo->cena }}" step="0.01" required>
+                <input type="number" id="cena" name="cena" value="{{ $jedlo->cena }}" step="0.2" required>
             </div>
             <div class="form-group">
                 <label for="popis">Popis:</label>

@@ -1,57 +1,76 @@
-function addPhoto() {
-    var nazov = document.getElementById('nazov').value;
-    var typ_id = document.getElementById('typ_id').value;
-    var obrazok = document.getElementById('obrazok').files[0];
-
-    var formData = new FormData();
-    formData.append('nazov', nazov);
-    formData.append('typ_id', typ_id);
-    formData.append('obrazok', obrazok);
-
-    fetch('/fotogaleria/add', {
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log(data.message);
-                alert(formData.get('nazov') + " - Fotka bola pridaná!");
-            } else {
-                console.error(data.message);
-                alert("Fotka nebola pridaná, pravdepodobne ste zadali zlé parametre!");
-            }
-        })
-        .catch(error => {
-            console.error('Chyba pri vykonávaní AJAX volania: ', error);
-            alert("Fotka nebola pridaná, pravdepodobne ste zadali zlé parametre!");
-        });
-
-    refreshPhotos();
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
+var csrfToken = getCookie('XSRF-TOKEN');
 function refreshPhotos() {
     fetch('/fotogaleria/data')
         .then(response => response.json())
         .then(data => {
             var galleryContainer = document.getElementById('gallery-container');
-            galleryContainer.innerHTML = ''; // Clear the gallery container
+            galleryContainer.innerHTML = '';
 
             data.forEach(function (value) {
-                var img = document.createElement('img');
-                img.src = value.obrazok;
-                img.alt = value.nazov;
-                img.className = 'img-fluid img-thumbnail'; // Add classes for styling
+                // Check if the URL ends with a valid image extension
+                if (isValidImageURL(value.obrazok)) {
 
-                var link = document.createElement('a');
-                link.href = '#'; // Add your link destination if needed
-                link.classList.add('d-block', 'mb-4', 'h-100');
+                    var img = document.createElement('img');
+                    img.src = value.obrazok;
+                    img.alt = value.nazov;
+                    img.className = 'img-fluid img-thumbnail';
 
-                link.appendChild(img);
-                galleryContainer.appendChild(link);
+                    var link = document.createElement('a');
+                    link.classList.add('d-block', 'mb-4', 'h-100');
+
+                    link.appendChild(img);
+
+                    var name = document.createElement('p');
+                    name.textContent = value.nazov;
+                    name.className = 'text-center whiteColor';
+                    link.appendChild(name);
+
+                    if (isAdmin) {
+                        var editButton = document.createElement('button');
+                        editButton.textContent = 'Edit';
+                        editButton.className = 'btn btn-primary';
+                        editButton.onclick = function () {
+                            window.location.href = '/fotogaleria/' + value.foto_id + '/edit';
+                        };
+                        link.appendChild(editButton);
+
+                        var deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.className = 'btn btn-danger';
+                        deleteButton.onclick = function () {
+                            if (confirm('Are you sure you want to delete ' + value.nazov + '?')) {
+                                var deleteForm = document.createElement('form');
+                                deleteForm.action = '/fotogaleria/' + value.foto_id;
+                                deleteForm.method = 'POST';
+
+                                var methodField = document.createElement('input');
+                                methodField.type = 'hidden';
+                                methodField.name = '_method';
+                                methodField.value = 'DELETE';
+                                deleteForm.appendChild(methodField);
+
+                                var csrfField = document.createElement('input');
+                                csrfField.type = 'hidden';
+                                csrfField.name = '_token';
+                                csrfField.value = document.querySelector('meta[name="csrf-token"]').content;
+                                deleteForm.appendChild(csrfField);
+
+                                document.body.appendChild(deleteForm);
+                                deleteForm.submit();
+                            }
+                        };
+
+                        link.appendChild(deleteButton);
+                    }
+
+                    galleryContainer.appendChild(link);
+                }
             });
         })
         .catch(error => {
@@ -59,10 +78,11 @@ function refreshPhotos() {
         });
 }
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    refreshPhotos();
-});
+// Function to check if the URL ends with a valid image extension
+function isValidImageURL(url) {
+    var validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']; // Add more if needed
+    return validExtensions.some(ext => url.toLowerCase().endsWith(ext));
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     refreshPhotos();

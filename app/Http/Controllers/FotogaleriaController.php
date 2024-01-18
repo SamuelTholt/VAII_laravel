@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fotogaleria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FotogaleriaController extends Controller
 {
@@ -19,6 +20,11 @@ class FotogaleriaController extends Controller
     {
         return view('fotogaleria', compact('foto'));
     }
+
+    public function create(Fotogaleria $foto)
+    {
+        return view('pridanieFotky', compact('foto'));
+    }
     public function getPhoto() {
         $gallery = Fotogaleria::all();
         $gallery->transform(function ($item, $key) {
@@ -28,7 +34,7 @@ class FotogaleriaController extends Controller
         return response()->json($gallery);
     }
 
-    public function addItem(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'nazov' => 'required|string',
@@ -37,28 +43,34 @@ class FotogaleriaController extends Controller
         ]);
 
         if($request->hasFile('obrazok')){
-            $filenameWithExt = $request->file('obrazok')->getClientOriginalName();
-
+            $file = $request->file('obrazok');
+            $filenameWithExt = $file->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-            $extension = $request->file('obrazok')->getClientOriginalExtension();
-
+            $extension = $file->getClientOriginalExtension();
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
 
-            $path = $request->file('obrazok')->storeAs('public/obrazky', $fileNameToStore);
+            if (!Storage::exists('public/obrazky')) {
+                Storage::makeDirectory('public/obrazky');
+            }
+
+            $path = $file->storeAs('public/obrazky', $fileNameToStore);
+
+            if (!$path) {
+                return redirect(route('fotogaleria'))->with('error', 'There was an error uploading the image.');
+            }
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
 
-        // Create new photo
         $photoItem = new Fotogaleria;
         $photoItem->nazov = $validatedData['nazov'];
         $photoItem->typ_id = $validatedData['typ_id'];
         $photoItem->obrazok = $fileNameToStore;
         $photoItem->save();
 
-        return response()->json(['success' => true, 'message' => 'Photo item added successfully', 'data' => $photoItem]);
+        return redirect(route('fotogaleria'));
     }
+
 
 
     public function edit($id)
@@ -67,36 +79,46 @@ class FotogaleriaController extends Controller
         $foto = Fotogaleria::findOrFail($id);
 
 
-        return view('editPhoto', compact('foto'));
+        return view('editFotky', compact('foto'));
     }
     public function update(Request $request, $id)
     {
-
         $validatedData = $request->validate([
             'nazov' => 'required|string',
             'typ_id' => 'required|numeric|min:1|max:2',
-            'obrazok' => 'required|binary',
+            'obrazok' => 'image',
         ]);
-
 
         $foto = Fotogaleria::findOrFail($id);
         $foto->nazov = $validatedData['nazov'];
         $foto->typ_id = $validatedData['typ_id'];
-        $foto->obrazok = $validatedData['obrazok'];
+
+        if ($request->hasFile('obrazok')) {
+            $filenameWithExt = $request->file('obrazok')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('obrazok')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('obrazok')->storeAs('public/obrazky', $fileNameToStore);
+
+            $foto->obrazok = $fileNameToStore;
+        }
+
         $foto->save();
 
         return redirect()->route('fotogaleria')->with('message', 'Fotka bola úspešne aktualizovaná.');
     }
 
+
     public function destroy($id)
     {
         $foto = Fotogaleria::findOrFail($id);
 
-        $this->authorize('delete', $foto);
-
+        if ($foto->obrazok !== 'noimage.jpg') {
+            Storage::delete('public/obrazky/' . $foto->obrazok);
+        }
 
         $foto->delete();
 
-        return response()->json(['success' => true, 'message' => 'Fotka bola úspešne odstránená.']);
+        return redirect()->route('fotogaleria')->with('message', 'Fotka bola úspešne odstránená.');
     }
 }
