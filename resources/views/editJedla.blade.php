@@ -33,7 +33,11 @@
             </div>
             <div class="form-group">
                 <label for="kategoria_id">Kategória ID:</label>
-                <input type="number" id="kategoria_id" name="kategoria_id" value="{{ $jedlo->kategoria_id }}" required>
+                <select name="kategoria_id" id="kategoria_id" required>
+                    <option value="1" {{ $jedlo->kategoria_id == 1 ? 'selected' : '' }}>1</option>
+                    <option value="2" {{ $jedlo->kategoria_id == 2 ? 'selected' : '' }}>2</option>
+                    <option value="3" {{ $jedlo->kategoria_id == 3 ? 'selected' : '' }}>3</option>
+                </select>
             </div>
             <button type="submit">Upraviť</button>
         </form>
