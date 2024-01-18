@@ -99,7 +99,7 @@
 
                             <div>
                                 <label for="cena">Cena (€):</label>
-                                <input type="number" id="cena" name="cena" step="0.01" required>
+                                <input type="number" id="cena" name="cena" step="0.2" required>
                             </div>
 
                             <div>
@@ -114,7 +114,11 @@
 
                             <div>
                                 <label for="kategoria_id">Kategória ID:</label>
-                                <input type="number" id="kategoria_id" name="kategoria_id" required>
+                                <select id="kategoria_id" name="kategoria_id" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
 
                             <button type="button" onclick="addMenuItem()">Pridaj</button>
@@ -131,14 +135,13 @@
                 <div class="col-lg-6">
                     <h2 class="big-text">Menu</h2><br>
                     <h3 class="larger-text">Polievky</h3><br>
-                    <div id="polievky" class="medium-text"></div><br>
+                    <div id="polievky" class="medium-text"></div><br><br>
                     <h3 class="larger-text">Hlavné jedlá</h3><br>
-                    <div id="hlavneJedla" class="medium-text"></div><br>
+                    <div id="hlavneJedla" class="medium-text"></div><br><br>
                     <h3 class="larger-text">Prílohy</h3><br>
                     <div id="prilohy" class="medium-text"></div><br>
                 </div>
             </div>
-
         </div>
     </section>
 

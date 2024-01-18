@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="{{asset('assets/images/logoLKRestaurant.png')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
+    <script src="{{asset('assets/js/js_fotogaleria.js')}}"></script>
+
+    <script type="text/javascript">
+        var isAdmin = @json(Auth::check() && Auth::user()->hasRole('admin'));
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -70,6 +77,43 @@
         </div>
     </nav>
 
+    @if(Auth::user() && Auth::user()->hasRole('admin'))
+        <section class="py-5">
+            <div class="container my-5 whiteColor">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+
+                        <button type="button" onclick="toggle()">Pridaj fotku</button>
+
+                        <form id="addItemForm" style="display: none;" enctype="multipart/form-data">>
+                            <h2 class="big-text">Pridanie fotky</h2><br>
+                            <div>
+                                <label for="nazov">Názov:</label>
+                                <input type="text" id="nazov" name="nazov" required>
+                            </div>
+
+                            <div>
+                                <label for="obrazok">Obrázok:</label>
+                                <input type="file" id="obrazok" name="obrazok" accept="image/*" required>
+                            </div>
+
+                            <div>
+                                <label for="typ_id">Typ ID:</label>
+                                <select id="typ_id" name="typ_id" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+
+                            <button type="button" onclick="addPhoto()">Pridaj</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+
     <div class="container">
 
         <h1 class="whiteColor fw-light text-center text-lg-start mt-4 mb-0">Jedlá</h1>
@@ -77,10 +121,13 @@
         <hr class="mt-2 mb-5">
 
         <div class="row text-center text-lg-start">
+        <div class="col-lg-3 col-md-4 col-6">
+            <a class="d-block mb-4 h-100" id="gallery-container"></a>
+        </div>
 
             <div class="col-lg-3 col-md-4 col-6">
                 <a class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="{{asset('assets/images/food1.jpg')}}" alt="food1">
+                    <img class="img-fluid img-thumbnail" id="gallery" src="{{asset('assets/images/food1.jpg')}}" alt="food1">
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-6">
@@ -146,9 +193,9 @@
                     </a>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+
 </body>
 </html>
