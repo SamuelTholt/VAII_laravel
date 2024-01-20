@@ -98,12 +98,12 @@
         <h1 class="whiteColor fw-light text-center text-lg-start mt-4 mb-0">Jedlá</h1>
         <hr class="mt-2 mb-5">
         <div class="row justify-content-center text-center text-lg-start" id="food-gallery-container">
-            <!-- Images for Jedlá will be added dynamically here -->
+
         </div>
 
         <h1 class="whiteColor fw-light text-center text-lg-start mt-4 mb-0">Reštaurácia</h1>
         <div class="row justify-content-center text-center text-lg-start" id="restaurant-gallery-container">
-            <!-- Images for Reštaurácia will be added dynamically here -->
+
         </div>
     </div>
 </div>

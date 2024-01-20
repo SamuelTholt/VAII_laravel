@@ -13,7 +13,7 @@ class Kategorie extends Model
     protected $primaryKey = 'kategoria_id';
     public $timestamps = false;
 
-    // Definícia vzťahu s tabuľkou Jedla
+
     public function jedla()
     {
         return $this->hasMany(Jedla::class, 'kategoria_id');

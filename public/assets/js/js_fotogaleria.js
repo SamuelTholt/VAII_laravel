@@ -81,9 +81,8 @@ function refreshPhotos() {
         });
 }
 
-// Function to check if the URL ends with a valid image extension
 function isValidImageURL(url) {
-    var validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']; // Add more if needed
+    var validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp'];
     return validExtensions.some(ext => url.toLowerCase().endsWith(ext));
 }
 
